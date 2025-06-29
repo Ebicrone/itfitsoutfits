@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT FITS OUTFITS</title>
+
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <style>
+    .product img{
+      width: 100%;
+      height: auto;
+      box-sizing: border-box;
+      object-fit: cover;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary py-3" > <!-- PADDING -->
+  <div class="container">
+    <img src="images/logo.png" alt="logo" width="100" height="100">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto"> <!-- LIST -->
+        
+        <li class="nav-item mx-3">
+          <a class="nav-link" href="index.html">Home</a>
+        <li class="nav-item mx-3">
+          <a class="nav-link active" href="#">Shop</a>
+        <li class="nav-item mx-3">
+          <a class="nav-link" href="fitting_room.html">Fitting Room</a>
+        <li class="nav-item mx-3">
+          <a class="nav-link" href="#">About us</a>
+        <li class="nav-item mx-3">
+          <a class="nav-link" href="login.html">LOG IN</a>
+        <li class="nav-item mx-2">
+          <i class="fas fa-search fa-2x mx-3"></i>
+          <i class="fas fa-shopping-bag fa-2x" onclick="window.location.href='cart.html'"></i>
+    </div>
+  </div>
+</nav>
+
+<section id="featured" class="my-5 py-5"> 
+  <div class="container mt-5 py-5">
+    <h3 class="font-weight-bold">Men's Clothing</h3> <!--MENS SECTION-->
+    <hr>
+    <p>IT FITS Selections</p>
+  </div>
+  <div class="row mx-auto container">
+    <div onclick="window.location.href='test.html?id=top4'" class="product text-center col-lg-3 col-md-4 col-12">
+      <img class= "img-fluid mb-3" src="images/mens_shirts/top4.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Streetwear Ver. 5
+      </h5>
+      <h4 class="p-price">
+         ₱259.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div onclick="window.location.href='test.html?id=top3'" class="product text-center col-lg-3 col-md-4 col-12">
+      <img class= "img-fluid mb-3" src="images/mens_shirts/top3.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        C3NTRAL DAY SHIRT
+      </h5>
+      <h4 class="p-price">
+         ₱249.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div onclick="window.location.href='test.html?id=top2'" class="product text-center col-lg-3 col-md-4 col-12">
+      <img class= "img-fluid mb-3" src="images/mens_shirts/top2.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Tambay in the Corner Edition
+      </h5>
+      <h4 class="p-price">
+         ₱399.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div class="product text-center col-lg-3 col-md-4 col-12">
+      <img onclick="window.location.href='test.html?id=top1'" class= "img-fluid mb-3" src="images/mens_shirts/top1.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        FR-FR_ASTIG Cropped Tee
+      </h5>
+      <h4 class="p-price">
+         ₱399.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+  </div>
+  <div class="row mx-auto container">
+    <div onclick="window.location.href='test.html?id=top6'" class="product text-center col-lg-3 col-md-4 col-12">
+      <img class= "img-fluid mb-3" src="images/mens_shirts/top6.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Knitted Round Tee
+      </h5>
+      <h4 class="p-price">
+         ₱254.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div onclick="window.location.href='test.html?id=top7'" class="product text-center col-lg-3 col-md-4 col-12">
+      <img class= "img-fluid mb-3" src="images/mens_shirts/top7.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        V-Neck Short Sleeve Tee
+      </h5>
+      <h4 class="p-price">
+         ₱240.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div onclick="window.location.href='test.html?id=top8'" class="product text-center col-lg-3 col-md-4 col-12">
+      <img class= "img-fluid mb-3" src="images/mens_shirts/top8.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Life is Strange Vintage Tee
+      </h5>
+      <h4 class="p-price">
+         ₱300.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div onclick="window.location.href='test.html?id=top9'" class="product text-center col-lg-3 col-md-4 col-12">
+      <img class= "img-fluid mb-3" src="images/mens_shirts/top9.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Loose Printed Tee
+      </h5>
+      <h4 class="p-price">
+         ₱300.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+  </div>
+  <div class="row mx-auto container">
+    <div onclick="window.location.href='test.html?id=top5'"class="product text-center col-lg-3 col-md-4 col-12">
+      <img class= "img-fluid mb-3" src="images/mens_shirts/top5.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Run Wild and Free Gray Tee
+      </h5>
+      <h4 class="p-price">
+         157.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div onclick="window.location.href='test.html?id=top10'" class="product text-center col-lg-3 col-md-4 col-12">
+      <img class= "img-fluid mb-3" src="images/mens_shirts/top10.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Goth Oversized Cropped Tee
+      </h5>
+      <h4 class="p-price">
+         ₱259.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div onclick="window.location.href='test.html?id=top11'" class="product text-center col-lg-3 col-md-4 col-12">
+      <img class= "img-fluid mb-3" src="images/mens_shirts/top11.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Casual Roundneck Tee
+      </h5>
+      <h4 class="p-price">
+         299.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div onclick="window.location.href='test.html?id=top12'"  class="product text-center col-lg-3 col-md-4 col-12">
+      <img class= "img-fluid mb-3" src="images/mens_shirts/top12.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Star Vintage Oversized Tee
+      </h5>
+      <h4 class="p-price">
+         ₱199.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div onclick="window.location.href='test.html?id=bottom1'"  class="product text-center col-lg-3 col-md-4 col-12">
+      <img class= "img-fluid mb-3" src="images/mens_bottoms/bottom1.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Men's Plain Baggy Slacks
+      </h5>
+      <h4 class="p-price">
+         ₱665.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div onclick="window.location.href='test.html?id=bottom2'"  class="product text-center col-lg-3 col-md-4 col-12">
+      <img class= "img-fluid mb-3" src="images/mens_bottoms/bottom2.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Oversized Loose Denim Pants
+      </h5>
+      <h4 class="p-price">
+         ₱924.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div onclick="window.location.href='test.html?id=bottom3'"  class="product text-center col-lg-3 col-md-4 col-12">
+      <img class= "img-fluid mb-3" src="images/mens_bottoms/bottom3.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Men's Relaxed Fit Pants
+      </h5>
+      <h4 class="p-price">
+         ₱262.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div onclick="window.location.href='test.html?id=bottom4'"  class="product text-center col-lg-3 col-md-4 col-12">
+      <img class= "img-fluid mb-3" src="images/mens_bottoms/bottom4.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Men's Casual Cross Print Pants
+      </h5>
+      <h4 class="p-price">
+         ₱408.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+  </div>
+  </div>
+
+
+
+
+  
+  <div class="container mt-5 py-5">
+    <h3 class="font-weight-bold">Women's Clothing</h3> <!--WOMENS SECTION HERE-->
+    <hr>
+    <p>IT FITS Selections</p>
+  </div>
+  <div class="row mx-auto container">
+    <div onclick="window.location.href='test.html?id=w_top1'" class="product text-center col-lg-3 col-md-4 col-12">
+      <img class= "img-fluid mb-3" src="images/womens_tops/top1.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Floral & Patchwork Draped Collar
+      </h5>
+      <h4 class="p-price">
+         ₱179.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div class="product text-center col-lg-3 col-md-4 col-12">
+      <img onclick="window.location.href='test.html?id=w_top2'" class= "img-fluid mb-3" src="images/womens_tops/top2.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Women's Solid Color Short Sleeve T-Shirt
+      </h5>
+      <h4 class="p-price">
+         ₱287.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div class="product text-center col-lg-3 col-md-4 col-12">
+      <img onclick="window.location.href='test.html?id=w_top3'" class= "img-fluid mb-3" src="images/womens_tops/top3.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Vintage Racing Pattern Casual Simple Round Neck Short Sleeve Crop Top
+      </h5>
+      <h4 class="p-price">
+         ₱164.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div class="product text-center col-lg-3 col-md-4 col-12">
+      <img onclick="window.location.href='test.html?id=w_top4'" class= "img-fluid mb-3" src="images/womens_tops/top4.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Figure Graphic Y2k Tee
+      </h5>
+      <h4 class="p-price">
+         ₱153.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div class="product text-center col-lg-3 col-md-4 col-12">
+      <img onclick="window.location.href='test.html?id=w_top5'" class= "img-fluid mb-3" src="images/womens_tops/top5.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Ever-lasting Cropped Tee
+      </h5>
+      <h4 class="p-price">
+         ₱173.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div class="product text-center col-lg-3 col-md-4 col-12">
+      <img onclick="window.location.href='test.html?id=w_top6'" class= "img-fluid mb-3" src="images/womens_tops/top6.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Colorful Striped Knitted Women's Tight T-Shirt
+      </h5>
+      <h4 class="p-price">
+         ₱194.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div class="product text-center col-lg-3 col-md-4 col-12">
+      <img onclick="window.location.href='test.html?id=w_top7'" class= "img-fluid mb-3" src="images/womens_tops/top7.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Solid Color Vest Blouse
+      </h5>
+      <h4 class="p-price">
+         ₱288.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div class="product text-center col-lg-3 col-md-4 col-12">
+      <img onclick="window.location.href='test.html?id=w_top8'"  class= "img-fluid mb-3" src="images/womens_tops/top8.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Academia Casual Vintage Lace Trim
+      </h5>
+      <h4 class="p-price">
+         ₱385.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div class="product text-center col-lg-3 col-md-4 col-12">
+      <img onclick="window.location.href='test.html?id=w_bottom1'"  class= "img-fluid mb-3" src="images/womens_bottoms/w_bottom1.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+         Women Casual Front Button Pocket Loose Fit Denim Pants
+      </h5>
+      <h4 class="p-price">
+         ₱886.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div class="product text-center col-lg-3 col-md-4 col-12">
+      <img onclick="window.location.href='test.html?id=w_bottom2'"  class= "img-fluid mb-3" src="images/womens_bottoms/w_bottom2.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+         Women's Solid Color Sweatpants
+      </h5>
+      <h4 class="p-price">
+         ₱463.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div class="product text-center col-lg-3 col-md-4 col-12">
+      <img onclick="window.location.href='test.html?id=w_bottom3'"  class= "img-fluid mb-3" src="images/womens_bottoms/w_bottom3.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Casual Y2k Cut Out Ripped Denim Jeans
+      </h5>
+      <h4 class="p-price">
+         ₱603.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div class="product text-center col-lg-3 col-md-4 col-12">
+      <img onclick="window.location.href='test.html?id=w_bottom4'"  class= "img-fluid mb-3" src="images/womens_bottoms/w_bottom4.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Casual Brown Women's Jeans
+      </h5>
+      <h4 class="p-price">
+         ₱946.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div class="container mt-5 py-5">
+      <h3 class="font-weight-bold">Shoes</h3> <!--SHOE SECTION HERE-->
+      <hr>
+      <p>IT FITS Selections</p>
+    </div>
+    <div onclick="window.location.href='test.html?id=shoe1'" class="product text-center col-lg-3 col-md-4 col-12">
+      <img class= "img-fluid mb-3" src="images/shoes/shoe1.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Samba OG
+      </h5>
+      <h4 class="p-price">
+         ₱6,209.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div onclick="window.location.href='test.html?id=shoe2'" class="product text-center col-lg-3 col-md-4 col-12">
+      <img class= "img-fluid mb-3" src="images/shoes/shoe2.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Women's Mesh Autumn Sneakers
+      </h5>
+      <h4 class="p-price">
+         ₱620.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div onclick="window.location.href='test.html?id=shoe3'" class="product text-center col-lg-3 col-md-4 col-12">
+      <img class= "img-fluid mb-3" src="images/shoes/shoe3.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        Women's Burgundy Casual Loafers
+      </h5>
+      <h4 class="p-price">
+         ₱164.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+    <div onclick="window.location.href='test.html?id=shoe4'" class="product text-center col-lg-3 col-md-4 col-12">
+      <img class= "img-fluid mb-3" src="images/shoes/shoe4.png">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">
+        New Balance Running Sneakers
+      </h5>
+      <h4 class="p-price">
+         ₱5,858.00
+      </h4>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+
+
+
+    <nav aria-label="Page navigation example">
+  <ul class="pagination mt-5">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
+  </div>
+  </div>
+  <script src="test.html"></script>
+  <script src="data.js"></script>
+  <script src="main.js"></script>
+  
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+</body>

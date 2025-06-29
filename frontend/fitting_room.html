@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT FITS OUTFITS</title>
+
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    .image-container {
+  flex: 1;
+  text-align: center;
+}
+
+.small-img-group {
+  flex: 0.3; /* Adjust space for images */
+}
+
+.small-img-group img {
+  cursor: pointer;
+}
+
+.mr-3 {
+  margin-right: 20px; /* Space for left thumbnails */
+}
+
+.col-lg-6 {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  height: 100vh; /* Optional: Makes it take full height of the viewport */
+}
+  </style>
+
+
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary py-3" > <!-- PADDING -->
+  <div class="container">
+    <img src="images/logo.png" alt="logo" width="100" height="100">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto"> <!-- LIST -->
+        
+        <li class="nav-item mx-3">
+          <a class="nav-link" href="index.html">Home</a>
+        <li class="nav-item mx-3">
+          <a class="nav-link active" href="shop.html">Shop</a>
+        <li class="nav-item mx-3">
+          <a class="nav-link" href="#">Fitting Room</a>
+        <li class="nav-item mx-3">
+          <a class="nav-link" href="#">About us</a>
+        <li class="nav-item mx-3">
+          <a class="nav-link" href="login.html">Log In</a>
+        <li class="nav-item mx-2">
+          <i class="fas fa-search fa-2x mx-3"></i>
+          <i class="fas fa-shopping-bag fa-2x" onclick="window.location.href='cart.html'"></i>
+    </div>
+  </div>
+  </nav>
+
+  <section class="container d-flex justify-content-center align-items-center">
+  <!-- Left side thumbnails -->
+  <div class="small-img-group d-flex flex-column">
+    <div class="small-img-col">
+      <img src="images/mens_shirts/top1.png" width="100" class="small-img" alt="">
+    </div>
+    <div class="small-img-col">
+      <img src="images/mens_shirts/top2.png" width="100" class="small-img" alt="">
+    </div>
+    <div class="small-img-col">
+      <img src="images/mens_shirts/top3.png" width="100" class="small-img" alt="">
+    </div>
+    <div class="small-img-col">
+      <img src="images/mens_shirts/top4.png" width="100" class="small-img" alt="">
+    </div>
+    <div class="small-img-col">
+      <img src="images/mens_shirts/top5.png" width="100" class="small-img" alt="">
+    </div>
+    <div class="small-img-col">
+      <img src="images/mens_shirts/top6.png" width="100" class="small-img" alt="">
+    </div>
+  </div>
+
+  <!-- Main Image in the center -->
+  <div class="image-container text-center">
+    <img class="img-fluid w-30" id="MainImg" src="images/mens_shirts/streetwear_black.png" alt="">
+  </div>
+
+  <!-- Right side thumbnails -->
+  <div class="small-img-group d-flex flex-column ml-3">
+    <div class="small-img-col">
+      <img src="images/mens_shirts/top7.png" width="100" class="small-img" alt="">
+    </div>
+    <div class="small-img-col">
+      <img src="images/mens_shirts/top8.png" width="100" class="small-img" alt="">
+    </div>
+    <div class="small-img-col">
+      <img src="images/mens_shirts/top9.png" width="100" class="small-img" alt="">
+    </div>
+    <div class="small-img-col">
+      <img src="images/mens_shirts/top10.png" width="100" class="small-img" alt="">
+    </div>
+    <div class="small-img-col">
+      <img src="images/mens_shirts/top11.png" width="100" class="small-img" alt="">
+    </div>
+    <div class="small-img-col">
+      <img src="images/mens_shirts/top12.png" width="100" class="small-img" alt="">
+    </div>
+  </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+<script>
+    var MainImg = document.getElementById('MainImg');
+    var smallimg = document.getElementsByClassName('small-img');
+
+    smallimg[0].onclick = function(){
+      MainImg.src = src="images/mens_shirts/top1mod.png";
+    }
+    smallimg[1].onclick = function(){
+      MainImg.src = src="images/mens_shirts/top2mod.png";
+    }
+    smallimg[2].onclick = function(){
+      MainImg.src = src="images/mens_shirts/top3mod.png";
+    }
+    smallimg[3].onclick = function(){
+      MainImg.src = src="images/mens_shirts/top4mod.png";
+    }
+    smallimg[4].onclick = function(){
+      MainImg.src = src="images/mens_shirts/top5mod.png";
+    }
+    smallimg[5].onclick = function(){
+      MainImg.src = src="images/mens_shirts/top6mod.png";
+    }
+    smallimg[6].onclick = function(){
+      MainImg.src = src="images/mens_shirts/top7mod.png";
+    }
+    smallimg[7].onclick = function(){
+      MainImg.src = src="images/mens_shirts/top8mod.png";
+    }
+    smallimg[8].onclick = function(){
+      MainImg.src = src="images/mens_shirts/top9mod.png";
+    }
+    smallimg[9].onclick = function(){
+      MainImg.src = src="images/mens_shirts/top10mod.png";
+    }
+    smallimg[10].onclick = function(){
+      MainImg.src = src="images/mens_shirts/top11mod.png";
+    }
+    smallimg[11].onclick = function(){
+      MainImg.src = src="images/mens_shirts/top12mod.png";
+    }
+    
+</script>
+</body>
