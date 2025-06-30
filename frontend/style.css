@@ -240,13 +240,20 @@ button:hover {
 .small-img, .bottom-img {
   cursor: pointer;
   width: 100px;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   transition: all 0.3s ease;
 }
 
 .small-img:hover, .bottom-img:hover {
   border-color: #022529;
-  transform: scale(1.05);
+  transform: scale(1.00);
+}
+
+.product img {
+  width: 200px;
+  height: auto; /* Maintain aspect ratio */
+  max-height: 250px; /* Prevent images from being too tall */
+  object-fit: contain; /* Show entire image without cropping */
 }
 /* ---------------------------- Responsive Fix ---------------------------- */
 @media (max-width: 768px) {
