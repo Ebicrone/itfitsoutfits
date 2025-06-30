@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT FITS OUTFITS</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <style>
+    .product img{
+      width: 100%;
+      height: auto;
+      box-sizing: border-box;
+      object-fit: cover;
+    }
+    .sproduct select {
+      display: block;
+      padding: 5px 10px;
+    }
+
+    .sproduct input {
+      width: 50px;
+      height: 40px;
+      padding-left: 10px;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+
+    .sproduct input:focus{
+      outline: none;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary py-3" > <!-- PADDING -->
+  <div class="container">
+    <img src="images/logo.png" alt="logo" width="100" height="100">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto"> <!-- LIST -->
+        
+        <li class="nav-item mx-3">
+          <a class="nav-link" href="/index.html">Home</a>
+        <li class="nav-item mx-3">
+          <a class="nav-link active" href="/shop.html">Shop</a>
+        <li class="nav-item mx-3">
+          <a class="nav-link" href="/fitting_room.html">Fitting Room</a>
+        <li class="nav-item mx-3">
+          <a class="nav-link" href="#">About us</a>
+        <li class="nav-item mx-3">
+          <a class="nav-link" href="#">LOG IN</a>
+        <li class="nav-item mx-2">
+          <i class="fas fa-search fa-2x mx-3"></i>
+          <a class="fas fa-shopping-bag fa-2x" href="/cart.html"></a></li></ul>
+        
+    </div>
+  </div>
+</nav>
+
+<section class="container sproduct my-5 pt-5">
+  <div class="row mt-5">
+    <div class="col-lg-5 col-md-12 col-12">
+      <img class="img-fluid w-100 pb-1" id="MainImg" alt="">
+    </div>
+    <div class="col-lg-6 col-md-12 col-12">
+      <h6>IT FITS OUTFITS</h6>
+      <h5 class="product-title py-4"></h5>
+      <h4 class="product-price"></h4>
+      <select class="my-3" id="sizesel">
+        <option>Select Size</option>
+        <option>Small</option>
+        <option>Medium</option>
+        <option>Large</option>
+        <option>XL</option>
+        <option>XXL</option>
+      </select>
+      <input type="number" value="1" id="countsel" min="1">
+      <button class="abtn buy-btn" id="addtocart">Add to Cart</button>
+    </div>
+  </div>
+  <div class="container text-center mt-5 py-5">
+    <h3>Related Products</h3>
+    <hr>
+    <div class="product-display" style="display: flex; overflow-x: auto; white-space: nowrap; gap: 20px; padding: 10px 0;"></div>
+  </div>
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = urlParams.get('id'); // Get product ID from URL
+
+  console.log("Product ID from URL:", productId);
+
+  const productContainer = document.querySelector(".product-display");
+
+let dataItems = [
+  {
+    id: "top4",
+    name: "Streetwear Ver. 5",
+    price: 259,
+    img: "/images/mens_shirts/top4.png"
+  },
+  {
+    id: "top3",
+    name: "C3NTRAL DAY SHIRT",
+    price: 249,
+    img: "/images/mens_shirts/top3.png"
+  },
+  {
+    id: "top2",
+    name: "Tambay in the Corner Edition",
+    price: 399,
+    img: "/images/mens_shirts/top2.png"
+  },
+  {
+    id: "top1",
+    name: "FR-FR_ASTIG Cropped Teen",
+    price: 399,
+    img: "/images/mens_shirts/top1.png"
+  },
+  {
+    id: "top6",
+    name: "Knitted Round Tee",
+    price: 254,
+    img: "/images/mens_shirts/top6.png"
+  },
+  {
+    id: "top7",
+    name: "V-Neck Short Sleeve Tee",
+    price: 240,
+    img: "/images/mens_shirts/top7.png"
+  },
+  {
+    id: "top8",
+    name: "Life is Strange Vintage Tee",
+    price: 300,
+    img: "/images/mens_shirts/top8.png"
+  },
+  {
+    id: "top9",
+    name: "Loose Printed Tee",
+    price: 300,
+    img: "/images/mens_shirts/top9.png"
+  },
+  {
+    id: "top5",
+    name: "Run Wild and Free Gray Tee",
+    price: 157,
+    img: "/images/mens_shirts/top5.png"
+  },
+  {
+    id: "top10",
+    name: "Goth Oversized Cropped Tee",
+    price: 259,
+    img: "/images/mens_shirts/top10.png"
+  },
+  {
+    id: "top11",
+    name: "Casual Roundneck Tee",
+    price: 299,
+    img: "/images/mens_shirts/top11.png"
+  },
+  {
+    id: "top12",
+    name: "Star Vintage Oversized Tee",
+    price: 199,
+    img: "/images/mens_shirts/top12.png"
+  },
+
+
+  {
+    id: "bottom1",
+    name: "Men's Plain Baggy Slacks",
+    price: 665,
+    img: "/images/mens_bottoms/bottom1.png"
+  },
+  {
+    id: "bottom2",
+    name: "Oversized Loose Denim Pants",
+    price: 924,
+    img: "/images/mens_bottoms/bottom2.png"
+  },
+  {
+    id: "bottom3",
+    name: "Men's Relaxed Fit Pants",
+    price: 262,
+    img: "/images/mens_bottoms/bottom3.png"
+  },
+  {
+    id: "bottom4",
+    name: "Men's Casual Cross Print Pants",
+    price: 408,
+    img: "/images/mens_bottoms/bottom4.png"
+  },
+
+
+
+  {
+    id: "w_top1",
+    name: "Floral & Patchwork Draped Collar",
+    price: 179,
+    img: "/images/womens_tops/top1.png"
+  },
+  {
+    id: "w_top2",
+    name: "Women's Solid Color Short Sleeve T-Shirt",
+    price: 287,
+    img: "/images/womens_tops/top2.png"
+  },
+  {
+    id: "w_top3",
+    name: "Vintage Racing Pattern Casual Simple Round Neck Short Sleeve Crop Top",
+    price: 164,
+    img: "/images/womens_tops/top3.png"
+  },
+  {
+    id: "w_top4",
+    name: "Figure Graphic Y2k Tee",
+    price: 153,
+    img: "/images/womens_tops/top4.png"
+  },
+  {
+    id: "w_top5",
+    name: "Ever-lasting Cropped Tee",
+    price: 173,
+    img: "/images/womens_tops/top5.png"
+  },
+  {
+    id: "w_top6",
+    name: "Colorful Striped Knitted Women's Tight T-Shirt",
+    price: 194,
+    img: "/images/womens_tops/top6.png"
+  },
+  {
+    id: "w_top7",
+    name: "Solid Color Vest Blouse",
+    price: 288,
+    img: "/images/womens_tops/top7.png"
+  },
+  {
+    id: "w_top8",
+    name: "Academia Casual Vintage Lace Trim",
+    price: 385,
+    img: "/images/womens_tops/top8.png"
+  },
+  {
+    id: "w_bottom1",
+    name: "Women Casual Front Button Pocket Loose Fit Denim Pants",
+    price: 886,
+    img: "/images/womens_bottoms/w_bottom1.png"
+  },
+  {
+    id: "w_bottom2",
+    name: "Women's Solid Color Sweatpants",
+    price: 463,
+    img: "/images/womens_bottoms/w_bottom2.png"
+  },
+  {
+    id: "w_bottom3",
+    name: "Casual Y2k Cut Out Ripped Denim Jeans",
+    price: 603,
+    img: "/images/womens_bottoms/w_bottom3.png"
+  },
+  {
+    id: "w_bottom4",
+    name: "Casual Brown Women's Jeans",
+    price: 946,
+    img: "/images/womens_bottoms/w_bottom4.png"
+  },
+
+
+  {
+    id: "shoe1",
+    name: "Samba OG",
+    price: 6209,
+    img: "/images/shoes/shoe1.png"
+  },
+  {
+    id: "shoe2",
+    name: "Women's Mesh Autumn Sneakers",
+    price: 620,
+    img: "/images/shoes/shoe2.png"
+  },
+  {
+    id: "shoe3",
+    name: "Women's Burgundy Casual Loafers",
+    price: 614,
+    img: "/images/shoes/shoe3.png"
+  },
+  {
+    id: "shoe4",
+    name: "New Balance Running Sneakers",
+    price: 5858,
+    img: "/images/shoes/shoe4.png"
+  }
+]; 
+
+if (productId) {
+  const selectedProduct = dataItems.find(product => product.id === productId);
+
+  if (selectedProduct) {
+    document.getElementById('MainImg').src = selectedProduct.img;
+    document.querySelector('.product-title').innerText = selectedProduct.name;
+    document.querySelector('.product-price').innerText = ₱${selectedProduct.price};
+  } else {
+    console.error("Product not found in dataItems!");
+  }
+} else {
+  console.error("No product ID found in the URL!");
+}
+
+// ✅ Correct forEach loop variable and property names
+dataItems.forEach(product => {
+  const productHTML = `
+    <div class="product text-center col-lg-3 col-md-4 col-12">
+      <img class="img-fluid mb-3" src="${product.img}" alt="${product.name}">
+      <div class="star">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <h5 class="p-name">${product.name}</h5>
+      <h4 class="p-price">₱${product.price}</h4>
+      <a class="abtn buy-btn" href="/test.html/?id=${product.id}">Buy Now</a>
+    </div>
+  `;
+  productContainer.innerHTML += productHTML;
+});
+
+// ✅ Find the product using .find() instead of dataItems[productId]
+
+
+
+document.querySelector('#addtocart').onclick = function () {
+    const _urlParams = new URLSearchParams(window.location.search);
+    const _productId = _urlParams.get('id'); // Get product ID from URL
+  const p = dataItems.find(product => product.id === productId);
+
+  const sizesel = document.getElementById('sizesel').value;
+  const countsel = document.getElementById('countsel').value;
+
+  const o = localStorage.getItem('cart');
+  if (!o) {
+    localStorage.setItem('cart', JSON.stringify([{ count: countsel, size: sizesel, id: _productId, price: p.price, i: p.img, n: p.name }]));
+    alert('Added to cart!');
+    return;
+  }
+
+  try {
+    const j = JSON.parse(localStorage.getItem('cart'));
+    j.push({ count: countsel, size: sizesel, id: _productId, price: p.price, i: p.img, n: p.name });
+    localStorage.setItem('cart', JSON.stringify(j));
+  } catch (e) {
+    localStorage.setItem('cart', JSON.stringify([{ count: countsel, size: sizesel, id: _productId, price: p.price, i: p.img, n: p.name }]));
+  }
+
+  alert('Added to cart!');
+  }
+</script>
+</body>
+</html>
+cdn.jsdelivr.net
