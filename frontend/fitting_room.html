@@ -13,152 +13,221 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <style>
     .image-container {
-  flex: 1;
-  text-align: center;
-}
+      flex: 1;
+      text-align: center;
+    }
 
-.small-img-group {
-  flex: 0.3; /* Adjust space for images */
-}
+    .small-img-group {
+      flex: 0.3;
+    }
 
-.small-img-group img {
-  cursor: pointer;
-}
+    .small-img-group img {
+      margin: 5px 0;
+    }
 
-.mr-3 {
-  margin-right: 20px; /* Space for left thumbnails */
-}
+    .mr-3 {
+      margin-right: 20px;
+    }
 
-.col-lg-6 {
-  display: flex;
-  justify-content: center; /* Centers horizontally */
-  align-items: center; /* Centers vertically */
-  height: 100vh; /* Optional: Makes it take full height of the viewport */
-}
-  </style>
-
-
+    .col-lg-6 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    /* New styles for bottom clothing section */
+    .bottom-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 30px;
+      width: 100%;
+    }
+    
+    .bottom-label {
+      margin-bottom: 15px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #022529;
+      text-align: center;
+    }
+    
+    .bottom-options {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .small-img, .bottom-img {
+      cursor: pointer;
+      width: 100px;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+    
+    .small-img:hover, .bottom-img:hover {
+      border-color: #022529;
+      transform: scale(1.05);
+    }
+    
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
   </style>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary py-3" > <!-- PADDING -->
-  <div class="container">
-    <img src="images/logo.png" alt="logo" width="100" height="100">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto"> <!-- LIST -->
-        
-        <li class="nav-item mx-3">
-          <a class="nav-link" href="index.html">Home</a>
-        <li class="nav-item mx-3">
-          <a class="nav-link active" href="shop.html">Shop</a>
-        <li class="nav-item mx-3">
-          <a class="nav-link" href="#">Fitting Room</a>
-        <li class="nav-item mx-3">
-          <a class="nav-link" href="#">About us</a>
-        <li class="nav-item mx-3">
-          <a class="nav-link" href="login.html">Log In</a>
-        <li class="nav-item mx-2">
-          <i class="fas fa-search fa-2x mx-3"></i>
-          <i class="fas fa-shopping-bag fa-2x" onclick="window.location.href='cart.html'"></i>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary py-3">
+    <div class="container">
+      <img src="images/logo.png" alt="logo" width="100" height="100">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-3">
+            <a class="nav-link" href="index.html">Home</a>
+          <li class="nav-item mx-3">
+            <a class="nav-link active" href="shop.html">Shop</a>
+          <li class="nav-item mx-3">
+            <a class="nav-link" href="#">Fitting Room</a>
+          <li class="nav-item mx-3">
+            <a class="nav-link" href="#">About us</a>
+          <li class="nav-item mx-3">
+            <a class="nav-link" href="login.html">Log In</a>
+          <li class="nav-item mx-2">
+            <i class="fas fa-search fa-2x mx-3"></i>
+            <i class="fas fa-shopping-bag fa-2x" onclick="window.location.href='cart.html'"></i>
+        </ul>
+      </div>
     </div>
-  </div>
   </nav>
 
-  <section class="container d-flex justify-content-center align-items-center">
-  <!-- Left side thumbnails -->
-  <div class="small-img-group d-flex flex-column">
-    <div class="small-img-col">
-      <img src="images/mens_shirts/top1.png" width="100" class="small-img" alt="">
-    </div>
-    <div class="small-img-col">
-      <img src="images/mens_shirts/top2.png" width="100" class="small-img" alt="">
-    </div>
-    <div class="small-img-col">
-      <img src="images/mens_shirts/top3.png" width="100" class="small-img" alt="">
-    </div>
-    <div class="small-img-col">
-      <img src="images/mens_shirts/top4.png" width="100" class="small-img" alt="">
-    </div>
-    <div class="small-img-col">
-      <img src="images/mens_shirts/top5.png" width="100" class="small-img" alt="">
-    </div>
-    <div class="small-img-col">
-      <img src="images/mens_shirts/top6.png" width="100" class="small-img" alt="">
-    </div>
-  </div>
+  <div class="main-content">
+    <section class="container d-flex justify-content-center align-items-center">
+      <!-- Left side thumbnails -->
+      <div class="small-img-group d-flex flex-column">
+        <div class="small-img-col">
+          <img src="images/mens_shirts/top1.png" class="small-img" alt="Shirt 1">
+        </div>
+        <div class="small-img-col">
+          <img src="images/mens_shirts/top2.png" class="small-img" alt="Shirt 2">
+        </div>
+        <div class="small-img-col">
+          <img src="images/mens_shirts/top3.png" class="small-img" alt="Shirt 3">
+        </div>
+        <div class="small-img-col">
+          <img src="images/mens_shirts/top4.png" class="small-img" alt="Shirt 4">
+        </div>
+        <div class="small-img-col">
+          <img src="images/mens_shirts/top5.png" class="small-img" alt="Shirt 5">
+        </div>
+        <div class="small-img-col">
+          <img src="images/mens_shirts/top6.png" class="small-img" alt="Shirt 6">
+        </div>
+      </div>
 
-  <!-- Main Image in the center -->
-  <div class="image-container text-center">
-    <img class="img-fluid w-30" id="MainImg" src="images/mens_shirts/streetwear_black.png" alt="">
-  </div>
+      <!-- Main Image in the center -->
+      <div class="image-container text-center">
+        <img class="img-fluid w-30" id="MainImg" src="images/mens_shirts/streetwear_black.png" alt="Main Outfit">
+      </div>
 
-  <!-- Right side thumbnails -->
-  <div class="small-img-group d-flex flex-column ml-3">
-    <div class="small-img-col">
-      <img src="images/mens_shirts/top7.png" width="100" class="small-img" alt="">
-    </div>
-    <div class="small-img-col">
-      <img src="images/mens_shirts/top8.png" width="100" class="small-img" alt="">
-    </div>
-    <div class="small-img-col">
-      <img src="images/mens_shirts/top9.png" width="100" class="small-img" alt="">
-    </div>
-    <div class="small-img-col">
-      <img src="images/mens_shirts/top10.png" width="100" class="small-img" alt="">
-    </div>
-    <div class="small-img-col">
-      <img src="images/mens_shirts/top11.png" width="100" class="small-img" alt="">
-    </div>
-    <div class="small-img-col">
-      <img src="images/mens_shirts/top12.png" width="100" class="small-img" alt="">
-    </div>
+      <!-- Right side thumbnails -->
+      <div class="small-img-group d-flex flex-column ml-3">
+        <div class="small-img-col">
+          <img src="images/mens_shirts/top7.png" class="small-img" alt="Shirt 7">
+        </div>
+        <div class="small-img-col">
+          <img src="images/mens_shirts/top8.png" class="small-img" alt="Shirt 8">
+        </div>
+        <div class="small-img-col">
+          <img src="images/mens_shirts/top9.png" class="small-img" alt="Shirt 9">
+        </div>
+        <div class="small-img-col">
+          <img src="images/mens_shirts/top10.png" class="small-img" alt="Shirt 10">
+        </div>
+        <div class="small-img-col">
+          <img src="images/mens_shirts/top11.png" class="small-img" alt="Shirt 11">
+        </div>
+        <div class="small-img-col">
+          <img src="images/mens_shirts/top12.png" class="small-img" alt="Shirt 12">
+        </div>
+      </div>
+    </section>
+    
+    <!-- Bottom clothing section -->
+    <section class="bottom-section">
+      <div class="bottom-options">
+        <img src="images/mens_bottoms/bottom1.png" class="bottom-img" alt="Bottom 1">
+        <img src="images/mens_bottoms/bottom2.png" class="bottom-img" alt="Bottom 2">
+        <img src="images/mens_bottoms/bottom3.png" class="bottom-img" alt="Bottom 3">
+        <img src="images/mens_bottoms/bottom4.png" class="bottom-img" alt="Bottom 4">
+      </div>
+    </section>
   </div>
-</section>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
-<script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+  <script>
     var MainImg = document.getElementById('MainImg');
     var smallimg = document.getElementsByClassName('small-img');
+    var bottomimg = document.getElementsByClassName('bottom-img');
 
+    // Shirt click handlers
     smallimg[0].onclick = function(){
-      MainImg.src = src="images/mens_shirts/top1mod.png";
+      MainImg.src = "images/mens_shirts/top1mod.png";
     }
     smallimg[1].onclick = function(){
-      MainImg.src = src="images/mens_shirts/top2mod.png";
+      MainImg.src = "images/mens_shirts/top2mod.png";
     }
     smallimg[2].onclick = function(){
-      MainImg.src = src="images/mens_shirts/top3mod.png";
+      MainImg.src = "images/mens_shirts/top3mod.png";
     }
     smallimg[3].onclick = function(){
-      MainImg.src = src="images/mens_shirts/top4mod.png";
+      MainImg.src = "images/mens_shirts/top4mod.png";
     }
     smallimg[4].onclick = function(){
-      MainImg.src = src="images/mens_shirts/top5mod.png";
+      MainImg.src = "images/mens_shirts/top5mod.png";
     }
     smallimg[5].onclick = function(){
-      MainImg.src = src="images/mens_shirts/top6mod.png";
+      MainImg.src = "images/mens_shirts/top6mod.png";
     }
     smallimg[6].onclick = function(){
-      MainImg.src = src="images/mens_shirts/top7mod.png";
+      MainImg.src = "images/mens_shirts/top7mod.png";
     }
     smallimg[7].onclick = function(){
-      MainImg.src = src="images/mens_shirts/top8mod.png";
+      MainImg.src = "images/mens_shirts/top8mod.png";
     }
     smallimg[8].onclick = function(){
-      MainImg.src = src="images/mens_shirts/top9mod.png";
+      MainImg.src = "images/mens_shirts/top9mod.png";
     }
     smallimg[9].onclick = function(){
-      MainImg.src = src="images/mens_shirts/top10mod.png";
+      MainImg.src = "images/mens_shirts/top10mod.png";
     }
     smallimg[10].onclick = function(){
-      MainImg.src = src="images/mens_shirts/top11mod.png";
+      MainImg.src = "images/mens_shirts/top11mod.png";
     }
     smallimg[11].onclick = function(){
-      MainImg.src = src="images/mens_shirts/top12mod.png";
+      MainImg.src = "images/mens_shirts/top12mod.png";
     }
     
-</script>
+    // Bottom clothing click handlers
+    bottomimg[0].onclick = function(){
+      MainImg.src = "images/mens_bottoms/bottom1mod.png";
+    }
+    bottomimg[1].onclick = function(){
+      MainImg.src = "images/mens_bottoms/bottom2mod.png";
+    }
+    bottomimg[2].onclick = function(){
+      MainImg.src = "images/mens_bottoms/bottom3mod.png";
+    }
+    bottomimg[3].onclick = function(){
+      MainImg.src = "images/mens_bottoms/bottom4mod.png";
+    }
+  </script>
 </body>
+</html>

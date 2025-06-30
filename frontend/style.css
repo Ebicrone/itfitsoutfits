@@ -231,22 +231,23 @@ button:hover {
 }
 
 /* ---------------------------- Product Image Swaps ---------------------------- */
-.small-img-group {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-.small-img-col img {
-  width: 80px;
-  cursor: pointer;
-}
 
 .sproduct .row {
   display: flex;
   align-items: center;
 }
 
+.small-img, .bottom-img {
+  cursor: pointer;
+  width: 100px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.small-img:hover, .bottom-img:hover {
+  border-color: #022529;
+  transform: scale(1.05);
+}
 /* ---------------------------- Responsive Fix ---------------------------- */
 @media (max-width: 768px) {
   #home {
