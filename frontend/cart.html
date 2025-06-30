@@ -29,10 +29,10 @@
         <li class="nav-item mx-3">
           <a class="nav-link" href="#">About us</a>
         <li class="nav-item mx-3">
-          <a class="nav-link" href="login.html">Log In</a>
+          <a class="nav-link" href="#">Log In</a>
         <li class="nav-item mx-2">
           <i class="fas fa-search fa-2x mx-3"></i>
-          <i class="fas fa-shopping-bag fa-2x"></i>></i>
+          <i class="fas fa-shopping-bag fa-2x"></i></li></ul>
     </div>
   </div>
 </nav>
@@ -40,6 +40,7 @@
 <section id="featured" class="my-5 pb-5"> 
   <div class="container mt-5 py-5">
     <h3 class="font-weight-bold">Your Cart</h3>
+  </div>
 </section>
 
 <section id="cart-container" class="container my-5">
@@ -54,15 +55,7 @@
         <td>Total</td>
       </tr>
     </thead>
-    <tbody> <!--TABLES-->
-      <tr>
-        <td><a href=""><i class="fas fa-trash-alt"></i></a></td>
-        <td><img src="images/mens_shirts/streetwear2.png" alt=""></td>
-        <td><h5>Men's Graphic Tee</h5></td>
-        <td><h5>₱259.00</h5></td>
-        <td><input class="w-25 pl-1" value="1" type="number"></td>
-        <td><h5>₱259.00</h5></td>
-      </tr>
+    <tbody id="tbody-contents"> <!--TABLES-->
     </tbody>
   </table>
 </section>
@@ -82,7 +75,7 @@
         <h5>CART TOTAL</h5>
         <div class="d-flex justify-content-between">
           <h6>Subtotal</h6>
-          <p>₱259.00</p>
+          <p id="subtotal-cart-p">₱0</p>
         </div>
         <div class="d-flex justify-content-between">
           <h6>Shipping</h6>
@@ -91,7 +84,7 @@
         <hr class="second-hr">
         <div class="d-flex justify-content-between">
           <h6>TOTAL</h6>
-          <p>₱359.00</p>
+          <p id="total-cart-p">₱100.00</p>
         </div>
         <button class="ml-auto">Proceed to Checkout </button>
       </div>
@@ -99,31 +92,123 @@
   </div>
 </section>
 
+<script>
+  // Function to update cart totals
+  function updateCartTotals() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let subtotal = 0;
+    
+    // Calculate subtotal
+    cart.forEach(item => {
+      subtotal += item.price * item.count;
+    });
+    
+    const shipping = 100;
+    const total = subtotal + shipping;
+    
+    // Update display
+    document.querySelector('#subtotal-cart-p').textContent = `₱${subtotal.toFixed(2)}`;
+    document.querySelector('#total-cart-p').textContent = `₱${total.toFixed(2)}`;
+  }
 
+  // Function to refresh cart display
+  function refreshCartDisplay() {
+    const o = localStorage.getItem('cart');
+    const t = document.querySelector('#tbody-contents');
+    
+    // Clear the table
+    t.innerHTML = '';
+    
+    if (o) {
+      try {
+        const cart = JSON.parse(o);
+        
+        cart.forEach((item, index) => {
+          const itemTotal = item.price * item.count;
+          t.innerHTML += `<tr>
+            <td><a href="#" onclick="removeCartItem(${index}); return false;"><i class="fas fa-trash-alt"></i></a></td>
+            <td><img src="${item.i}" alt="${item.n}" style="width: 100px; height: 80px; object-fit: cover;"></td>
+            <td><h5>${item.n}</h5></td>
+            <td><h5>₱${item.price.toFixed(2)}</h5></td>
+            <td>
+              <input 
+                class="w-25 pl-1 quantity-input" 
+                type="number" 
+                min="1" 
+                value="${item.count}" 
+                data-index="${index}"
+              >
+            </td>
+            <td><h5 class="item-total">₱${itemTotal.toFixed(2)}</h5></td>
+          </tr>`;
+        });
+        
+        // Add event listeners to quantity inputs
+        document.querySelectorAll('.quantity-input').forEach(input => {
+          input.addEventListener('change', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            const newQuantity = parseInt(this.value) || 1;
+            
+            // Update quantity in cart
+            const cart = JSON.parse(localStorage.getItem('cart'));
+            if (index >= 0 && index < cart.length) {
+              cart[index].count = newQuantity;
+              localStorage.setItem('cart', JSON.stringify(cart));
+              
+              // Update item total display
+              const itemTotal = cart[index].price * newQuantity;
+              this.closest('tr').querySelector('.item-total').textContent = `₱${itemTotal.toFixed(2)}`;
+              
+              // Update cart totals
+              updateCartTotals();
+            }
+          });
+        });
+        
+        // Update totals
+        updateCartTotals();
+        
+      } catch (e) {
+        localStorage.removeItem('cart');
+        // Update totals to 0 when cart is empty
+        document.querySelector('#subtotal-cart-p').textContent = '₱0.00';
+        document.querySelector('#total-cart-p').textContent = '₱100.00';
+      }
+    } else {
+      // Update totals to 0 when cart is empty
+      document.querySelector('#subtotal-cart-p').textContent = '₱0.00';
+      document.querySelector('#total-cart-p').textContent = '₱100.00';
+    }
+  }
 
+  // Function to remove item from cart
+  function removeCartItem(index) {
+    try {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
+      // Remove item at specified index
+      cart.splice(index, 1);
 
+      // Update localStorage
+      if (cart.length > 0) {
+        localStorage.setItem('cart', JSON.stringify(cart));
+      } else {
+        localStorage.removeItem('cart');
+      }
 
+      // Refresh the cart display
+      refreshCartDisplay();
+    } catch (e) {
+      console.error('Error removing cart item:', e);
+      localStorage.removeItem('cart');
+      refreshCartDisplay();
+    }
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // Initial cart display
+  refreshCartDisplay();
+</script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </body>
+</html>

@@ -306,7 +306,7 @@ if (productId) {
   if (selectedProduct) {
     document.getElementById('MainImg').src = selectedProduct.img;
     document.querySelector('.product-title').innerText = selectedProduct.name;
-    document.querySelector('.product-price').innerText = ₱${selectedProduct.price};
+    document.querySelector('.product-price').innerText = `₱${selectedProduct.price}`;
   } else {
     console.error("Product not found in dataItems!");
   }
@@ -314,7 +314,7 @@ if (productId) {
   console.error("No product ID found in the URL!");
 }
 
-// ✅ Correct forEach loop variable and property names
+// ✅ Correct `forEach` loop variable and property names
 dataItems.forEach(product => {
   const productHTML = `
     <div class="product text-center col-lg-3 col-md-4 col-12">
@@ -334,7 +334,7 @@ dataItems.forEach(product => {
   productContainer.innerHTML += productHTML;
 });
 
-// ✅ Find the product using .find() instead of dataItems[productId]
+// ✅ Find the product using `.find()` instead of `dataItems[productId]`
 
 
 
@@ -366,4 +366,3 @@ document.querySelector('#addtocart').onclick = function () {
 </script>
 </body>
 </html>
-cdn.jsdelivr.net
