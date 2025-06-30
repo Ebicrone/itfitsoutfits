@@ -45,6 +45,15 @@ button:hover {
   color: #00565d !important;
 }
 
+#profileDropdown .dropdown-menu {
+  min-width: 180px;
+}
+
+#profileDropdown .dropdown-item-text {
+  color: #555;
+}
+
+
 /* ---------------------------- Hero Section ---------------------------- */
 #home {
   display: flex;

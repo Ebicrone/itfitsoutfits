@@ -82,6 +82,7 @@
 </head>
 
 <body>
+  <!-- NAVIGATION -->
   <nav class="navbar navbar-expand-lg bg-body-tertiary py-3">
     <div class="container">
       <img src="images/logo.png" alt="logo" width="100" height="100">
@@ -92,17 +93,43 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item mx-3">
             <a class="nav-link" href="index.html">Home</a>
+          </li>
           <li class="nav-item mx-3">
-            <a class="nav-link active" href="shop.html">Shop</a>
+            <a class="nav-link" href="shop.html">Shop</a>
+          </li>
           <li class="nav-item mx-3">
-            <a class="nav-link" href="#">Fitting Room</a>
+            <a class="nav-link" href="fitting_room.html">Fitting Room</a>
+          </li>
           <li class="nav-item mx-3">
             <a class="nav-link" href="#">About us</a>
-          <li class="nav-item mx-3">
+          </li>
+          <li class="nav-item mx-3" id="loginLink">
             <a class="nav-link" href="login.html">Log In</a>
+          </li>
           <li class="nav-item mx-2">
             <i class="fas fa-search fa-2x mx-3"></i>
             <i class="fas fa-shopping-bag fa-2x" onclick="window.location.href='cart.html'"></i>
+          </li>
+
+          <!-- PROFILE DROPDOWN -->
+          <li class="nav-item dropdown mx-2" id="profileDropdown" style="display:none;">
+            <a
+              class="nav-link dropdown-toggle d-flex align-items-center"
+              href="#"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false">
+              <i class="fas fa-user-circle fa-lg mr-1"></i>
+              <span id="userName"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+              <span class="dropdown-item-text font-weight-bold" id="userRole"></span>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" onclick="logout()">Logout</a>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
@@ -229,5 +256,37 @@
       MainImg.src = "images/mens_bottoms/bottom4mod.png";
     }
   </script>
+
+  <!-- SCRIPT FOR PROFILE DROPDOWN -->
+  <script>
+    const userData = localStorage.getItem("user");
+    const profileDropdown = document.getElementById("profileDropdown");
+    const loginLink = document.getElementById("loginLink");
+
+    if (userData) {
+      const user = JSON.parse(userData);
+      const userName = document.getElementById("userName");
+      const userRole = document.getElementById("userRole");
+
+      userName.textContent = user.username || "";
+      userRole.textContent = user.userRole || "";
+
+      profileDropdown.style.display = "inline-flex";
+      loginLink.style.display = "none";
+    } else {
+      profileDropdown.style.display = "none";
+      loginLink.style.display = "inline-flex";
+    }
+
+    function logout() {
+      localStorage.removeItem("user");
+      window.location.reload();
+    }
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
+
 </body>
 </html>

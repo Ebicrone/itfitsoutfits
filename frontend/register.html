@@ -1,122 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SHOP</title>
-
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
 </head>
 <body>
   <!-- NAVIGATION -->
-   <nav class="navbar navbar-expand-lg bg-body-tertiary py-3" > <!-- PADDING -->
-  <div class="container">
-    <img src="images/logo.png" alt="logo" width="100" height="100">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto"> <!-- LIST -->
-        
-        <li class="nav-item mx-3">
-          <a class="nav-link" href="#">Home</a>
-        <li class="nav-item mx-3">
-          <a class="nav-link" href="shop.html">Shop</a>
-        <li class="nav-item mx-3">
-          <a class="nav-link" href="fitting_room.html">Fitting Room</a>
-        <li class="nav-item mx-3">
-          <a class="nav-link" href="#">About us</a>
-        <li class="nav-item mx-3">
-          <a class="nav-link" href="login.html">LOG IN</a>
-        <li class="nav-item mx-2">
-          <i class="fas fa-search fa-2x mx-3"></i>
-          <i class="fas fa-shopping-bag fa-2x" onclick="window.location.href='cart.html'"></i>
-    </div>
-  </div>
-</nav>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary py-3">
+    <div class="container">
+      <img src="images/logo.png" alt="logo" width="100" height="100">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-3">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item mx-3">
+            <a class="nav-link" href="shop.html">Shop</a>
+          </li>
+          <li class="nav-item mx-3">
+            <a class="nav-link" href="fitting_room.html">Fitting Room</a>
+          </li>
+          <li class="nav-item mx-3">
+            <a class="nav-link" href="#">About us</a>
+          </li>
+          <li class="nav-item mx-3" id="loginLink">
+            <a class="nav-link" href="login.html">Log In</a>
+          </li>
+          <li class="nav-item mx-2">
+            <i class="fas fa-search fa-2x mx-3"></i>
+            <i class="fas fa-shopping-bag fa-2x" onclick="window.location.href='cart.html'"></i>
+          </li>
 
-<div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="card p-4 shadow" style="width: 350px;">
-        <h3 class="text-center mb-4">Register</h3>
-        <form id="registerForm">
-            <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" required>
+          <!-- PROFILE DROPDOWN -->
+          <li class="nav-item dropdown mx-2" id="profileDropdown" style="display:none;">
+            <a
+              class="nav-link dropdown-toggle d-flex align-items-center"
+              href="#"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false">
+              <i class="fas fa-user-circle fa-lg mr-1"></i>
+              <span id="userName"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+              <span class="dropdown-item-text font-weight-bold" id="userRole"></span>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" onclick="logout()">Logout</a>
             </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" required>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" required>
-            </div>
-            <div class="mb-3">
-                <label for="confirmPassword" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" id="confirmPassword" required>
-            </div>
-            <div class="mb-3">
-                <label for="height" class="form-label">Height (cm)</label>
-                <input type="number" class="form-control" id="height" required>
-            </div>
-            <div class="mb-3">
-                <label for="weight" class="form-label">Weight (kg)</label>
-                <input type="number" class="form-control" id="weight" required>
-            </div>
-            <div class="mb-3">
-                <label for="age" class="form-label">Age</label>
-                <input type="number" class="form-control" id="age" required>
-            </div>
-            <div class="mb-3">
-                <label for="coloring" class="form-label">Skin Tone</label>
-                <select class="form-select" id="coloring" required>
-                    <option value="fair">Fair</option>
-                    <option value="light">Light</option>
-                    <option value="medium">Medium</option>
-                    <option value="tan">Tan</option>
-                    <option value="dark">Dark</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="shape" class="form-label">Body Shape</label>
-                <select class="form-select" id="shape" required>
-                    <option value="rectangle">Rectangle</option>
-                    <option value="hourglass">Hourglass</option>
-                    <option value="pear">Pear</option>
-                    <option value="apple">Apple</option>
-                    <option value="inverted-triangle">Inverted Triangle</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary w-100">Register</button>
-        </form>
-        <p class="text-center mt-3">Already have an account? <a href="login.html">Login</a></p>
+          </li>
+        </ul>
+      </div>
     </div>
+  </nav>
+
+  <!-- SCRIPTS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
+
+  <!-- SCRIPT FOR PROFILE DROPDOWN -->
+  <script>
+    const userData = localStorage.getItem("user");
+    const profileDropdown = document.getElementById("profileDropdown");
+    const loginLink = document.getElementById("loginLink");
+
+    if (userData) {
+      const user = JSON.parse(userData);
+      const userName = document.getElementById("userName");
+      const userRole = document.getElementById("userRole");
+
+      userName.textContent = user.username || "";
+      userRole.textContent = user.userRole || "";
+
+      profileDropdown.style.display = "inline-flex";
+      loginLink.style.display = "none";
+    } else {
+      profileDropdown.style.display = "none";
+      loginLink.style.display = "inline-flex";
+    }
+
+    function logout() {
+      localStorage.removeItem("user");
+      window.location.reload();
+    }
+  </script>
+
+  <!-- REGISTRATION FORM -->
+  <div class="card p-4 shadow">
+  <h3 class="text-center mb-4">Register</h3>
+  <form id="registerForm">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" required>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" class="form-control" id="confirmPassword" required>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" id="firstName">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" id="lastName">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="height">Height (cm)</label>
+        <input type="number" class="form-control" id="height" required>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="weight">Weight (kg)</label>
+        <input type="number" class="form-control" id="weight" required>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="age">Age</label>
+        <input type="number" class="form-control" id="age" required>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="coloring">Skin Tone</label>
+        <select class="form-control" id="coloring" required>
+          <option value="">Select</option>
+          <option value="fair">Fair</option>
+          <option value="light">Light</option>
+          <option value="medium">Medium</option>
+          <option value="tan">Tan</option>
+          <option value="dark">Dark</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="shape">Body Shape</label>
+        <select class="form-control" id="shape" required>
+          <option value="">Select</option>
+          <option value="rectangle">Rectangle</option>
+          <option value="hourglass">Hourglass</option>
+          <option value="pear">Pear</option>
+          <option value="apple">Apple</option>
+          <option value="inverted-triangle">Inverted Triangle</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100 mt-3">Register</button>
+  </form>
+  <p class="text-center mt-3">Already have an account? <a href="login.html">Login</a></p>
 </div>
 
-<script>
-    document.getElementById("registerForm").addEventListener("submit", function(event) {
-        event.preventDefault();
 
-        let userData = {
-            username: document.getElementById("username").value,
-            email: document.getElementById("email").value,
-            password: document.getElementById("password").value,
-            height: document.getElementById("height").value,
-            weight: document.getElementById("weight").value,
-            age: document.getElementById("age").value,
-            coloring: document.getElementById("coloring").value,
-            shape: document.getElementById("shape").value
-        };
+  <!-- FORM SCRIPT -->
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", async function(event) {
+      event.preventDefault();
 
-        localStorage.setItem("user", JSON.stringify(userData)); // Store user info temporarily
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
 
-        alert("Registration successful!");
-        window.location.href = "login.html"; // Redirect to login page
+      if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return;
+      }
+
+      const userData = {
+        username: document.getElementById("username").value,
+        email: document.getElementById("email").value,
+        password: password,
+        firstName: document.getElementById("firstName").value,
+        lastName: document.getElementById("lastName").value,
+        height: document.getElementById("height").value,
+        weight: document.getElementById("weight").value,
+        age: document.getElementById("age").value,
+        coloring: document.getElementById("coloring").value,
+        shape: document.getElementById("shape").value
+      };
+
+
+      try {
+        const response = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(userData)
+        });
+
+        if (response.ok) {
+          alert('Registration successful!');
+          window.location.href = 'login.html';
+        } else {
+          const error = await response.text();
+          alert('Error: ' + error);
+        }
+      } catch (err) {
+        console.error('Fetch error:', err);
+        alert('An error occurred. Please try again.');
+      }
     });
-</script>
-
+  </script>
 </body>
 </html>
