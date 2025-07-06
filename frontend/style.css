@@ -9,23 +9,34 @@
 body {
   font-family: 'Poppins', sans-serif;
   padding-top: 70px;
+  background-color: #f9f9f9;
+  color: #222;
 }
 
 /* ---------------------------- Buttons ---------------------------- */
-button {
-  font-size: 0.8rem;
+button,
+.abtn {
+  font-size: 0.85rem;
   font-weight: 700;
   background-color: #022529;
-  color: aliceblue;
+  color: #fff;
   padding: 13px 30px;
   text-transform: uppercase;
   border: none;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border-radius: 4px;
+  display: inline-block;
 }
 
-button:hover {
+button:hover,
+.abtn:hover {
   background-color: #00565d;
+  transform: translateY(-2px);
+}
+
+.buy-btn {
+  font-size: 0.8rem;
 }
 
 /* ---------------------------- Navbar ---------------------------- */
@@ -35,14 +46,26 @@ button:hover {
   top: 0;
   width: 100%;
   font-size: 17px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   z-index: 1000;
 }
 
-.navbar-light .navbar-nav .nav-link:hover,
+.navbar-nav .nav-link {
+  color: #222;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
 .navbar i:hover,
-.navbar-light .navbar-nav .nav-link.active,
+.navbar-nav .nav-link.active,
 .navbar i.active {
   color: #00565d !important;
+}
+
+.navbar i {
+  cursor: pointer;
+  transition: color 0.3s ease;
 }
 
 #profileDropdown .dropdown-menu {
@@ -53,7 +76,6 @@ button:hover {
   color: #555;
 }
 
-
 /* ---------------------------- Hero Section ---------------------------- */
 #home {
   display: flex;
@@ -63,7 +85,6 @@ button:hover {
   padding: 0 60px;
   height: 100vh;
   background: url("images/banner/FALL_COLLECTION.png") top center / cover no-repeat;
-  color: #000;
 }
 
 #home span {
@@ -112,47 +133,54 @@ button:hover {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  text-align: start;
+  padding: 1rem;
   transition: background-color 0.3s ease;
 }
 
 #new .one:hover .details {
-  background-color: rgba(245, 178, 178, 0.7);
+  background-color: rgba(0,0,0,0.5);
+  color: #fff;
 }
 
 #new .one .details button {
   background: none;
-  border-bottom: 1px solid #2a2a2a;
+  border-bottom: 1px solid currentColor;
   padding: 2.5px;
   font-size: 14px;
   font-weight: 500;
-  color: #2a2a2a;
+  color: inherit;
   text-transform: uppercase;
   transform: translateY(70px);
   transition: 0.3s ease;
 }
 
-#new .one .details button:hover {
-  color: #fff;
-  border-color: #fff;
+#new .one:hover .details button {
+  transform: translateY(0);
 }
 
 /* ---------------------------- Product Grid ---------------------------- */
 .product {
   cursor: pointer;
   margin-bottom: 2rem;
+  transition: transform 0.2s ease;
+}
+
+.product:hover {
+  transform: translateY(-4px);
 }
 
 .product img {
+  width: 100%;
+  max-height: 250px;
+  object-fit: contain;
   transition: opacity 0.3s ease;
 }
 
 .product:hover img {
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 .product .buy-btn {
-  background-color: #022529;
   transform: translateY(20px);
   opacity: 0;
   transition: all 0.3s ease;
@@ -166,6 +194,7 @@ button:hover {
 /* ---------------------------- Cart ---------------------------- */
 #cart-container {
   overflow-x: auto;
+  margin-bottom: 2rem;
 }
 
 #cart-container table {
@@ -183,16 +212,10 @@ button:hover {
 }
 
 #cart-container td {
-  border: 1px solid #b6b3b3;
+  border: 1px solid #ddd;
   text-align: center;
+  padding: 10px;
 }
-
-#cart-container td:nth-child(1) { width: 100px; }
-#cart-container td:nth-child(2),
-#cart-container td:nth-child(3) { width: 200px; }
-#cart-container td:nth-child(4),
-#cart-container td:nth-child(5),
-#cart-container td:nth-child(6) { width: 170px; }
 
 #cart-container tbody img {
   width: 100px;
@@ -203,7 +226,8 @@ button:hover {
 /* ---------------------------- Cart Bottom ---------------------------- */
 #cart-bottom .coupon > div,
 #cart-bottom .total > div {
-  border: 1px solid #b6b3b3;
+  border: 1px solid #ddd;
+  background-color: #fff;
 }
 
 #cart-bottom h5 {
@@ -217,6 +241,7 @@ button:hover {
   height: 44px;
   margin: 0 0 20px 12px;
   padding: 0 12px;
+  border: 1px solid #ccc;
 }
 
 #cart-bottom .total div > div {
@@ -224,46 +249,67 @@ button:hover {
 }
 
 #cart-bottom .total h6 {
-  color: #2a2a2a;
+  color: #333;
 }
 
 .second-hr {
-  background: #b8b7b3;
+  background: #ddd;
   width: 100%;
   height: 1px;
+  border: none;
 }
 
 #cart-bottom .total div > button {
   margin: 0 12px 20px 0;
-  display: flex;
-  justify-content: flex-end;
 }
 
-/* ---------------------------- Product Image Swaps ---------------------------- */
+/* Add padding inside coupon and total containers */
+#cart-bottom .coupon > div,
+#cart-bottom .total > div {
+  padding: 1.5rem;
+}
 
+/* Add spacing above the "Proceed to Checkout" button */
+#cart-bottom .total button {
+  margin-top: 1rem;
+}
+
+/* Prevent cart bottom from overflowing viewport */
+#cart-bottom {
+  overflow: hidden;
+  padding-bottom: 2rem; /* Adjust as needed */
+}
+
+/* Optional: limit vertical spacing on container */
+#cart-bottom .container {
+  margin-bottom: 0 !important;
+}
+
+/* Optional: ensure body doesn't add extra space */
+body {
+  overflow-x: hidden;
+}
+
+
+/* ---------------------------- Product Image Swaps ---------------------------- */
 .sproduct .row {
   display: flex;
   align-items: center;
 }
 
-.small-img, .bottom-img {
+.small-img,
+.bottom-img {
   cursor: pointer;
   width: 100px;
   border: 1px solid transparent;
   transition: all 0.3s ease;
 }
 
-.small-img:hover, .bottom-img:hover {
+.small-img:hover,
+.bottom-img:hover {
   border-color: #022529;
-  transform: scale(1.00);
 }
 
-.product img {
-  width: 200px;
-  height: auto; /* Maintain aspect ratio */
-  max-height: 250px; /* Prevent images from being too tall */
-  object-fit: contain; /* Show entire image without cropping */
-}
 /* ---------------------------- Responsive Fix ---------------------------- */
 @media (max-width: 768px) {
   #home {
@@ -286,5 +332,9 @@ button:hover {
 
   .hero-text .tagline {
     font-size: 1.2rem;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 0.5rem 1rem;
   }
 }
