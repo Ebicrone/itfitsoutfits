@@ -14,23 +14,15 @@
   <nav class="navbar navbar-expand-lg bg-body-tertiary py-3">
     <div class="container">
       <img src="images/logo.png" alt="logo" width="100" height="100">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item mx-3">
-            <a class="nav-link" href="index.html">Home</a>
-          </li>
-          <li class="nav-item mx-3">
-            <a class="nav-link" href="shop.html">Shop</a>
-          </li>
-          <li class="nav-item mx-3">
-            <a class="nav-link" href="fitting_room.html">Fitting Room</a>
-          </li>
-          <li class="nav-item mx-3" id="loginLink">
-            <a class="nav-link" href="login.html">Log In</a>
-          </li>
+          <li class="nav-item mx-3"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item mx-3"><a class="nav-link" href="shop.html">Shop</a></li>
+          <li class="nav-item mx-3"><a class="nav-link" href="fitting_room.html">Fitting Room</a></li>
+          <li class="nav-item mx-3" id="loginLink"><a class="nav-link" href="login.html">Log In</a></li>
           <li class="nav-item mx-2">
             <i class="fas fa-search fa-2x mx-3"></i>
             <i class="fas fa-shopping-bag fa-2x" onclick="window.location.href='cart.html'"></i>
@@ -38,14 +30,7 @@
 
           <!-- PROFILE DROPDOWN -->
           <li class="nav-item dropdown mx-2" id="profileDropdown" style="display:none;">
-            <a
-              class="nav-link dropdown-toggle d-flex align-items-center"
-              href="#"
-              id="navbarDropdownMenuLink"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false">
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-user-circle fa-lg mr-1"></i>
               <span id="userName"></span>
             </a>
@@ -80,6 +65,21 @@
     </div>
   </section>
 
+  <!-- Alert Modal -->
+  <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="alertModalLabel">Notification</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="alertModalBody"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- SCRIPTS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
@@ -93,12 +93,8 @@
 
     if (userData) {
       const user = JSON.parse(userData);
-      const userName = document.getElementById("userName");
-      const userRole = document.getElementById("userRole");
-
-      userName.textContent = user.username || "";
-      userRole.textContent = user.userRole || "";
-
+      document.getElementById("userName").textContent = user.username || "";
+      document.getElementById("userRole").textContent = user.userRole || "";
       profileDropdown.style.display = "inline-flex";
       loginLink.style.display = "none";
     } else {
@@ -108,12 +104,22 @@
 
     function logout() {
       localStorage.removeItem("user");
-      window.location.reload();
+      window.location.href = "login.html";
+    }
+
+    function showAlert(message, autoClose = true, redirectUrl = null) {
+      document.getElementById("alertModalBody").textContent = message;
+      $('#alertModal').modal('show');
+      if (autoClose) {
+        setTimeout(() => {
+          $('#alertModal').modal('hide');
+          if (redirectUrl) {
+            window.location.href = redirectUrl;
+          }
+        }, 1500);
+      }
     }
   </script>
-
-  <!-- Bootstrap Bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- Login Script -->
   <script>
@@ -124,7 +130,7 @@
       const password = document.getElementById("password").value.trim();
 
       if (!username || !password) {
-        alert("Please enter both username and password.");
+        showAlert("Please enter both username and password.");
         return;
       }
 
@@ -141,14 +147,13 @@
 
         if (response.ok) {
           localStorage.setItem("user", JSON.stringify(result.user));
-          alert(result.message);
-          window.location.href = "shop.html";
+          showAlert(result.message, true, "shop.html");
         } else {
-          alert(result.message);
+          showAlert(result.message);
         }
       } catch (error) {
         console.error("Error:", error);
-        alert("An error occurred. Please try again.");
+        showAlert("An error occurred. Please try again.");
       }
     });
   </script>

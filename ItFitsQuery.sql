@@ -65,27 +65,28 @@ productImage VARCHAR(255)
 );
 
 CREATE TABLE ORDERS(
-orderID INT IDENTITY (7000,1),
-userID INT,
-orderDate DATETIME,
-totalAmount DECIMAL(10,2),
-status VARCHAR(50)
+  orderID INT IDENTITY(100,1) PRIMARY KEY,
+  userID INT NOT NULL,
+  orderDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+  status VARCHAR(20) DEFAULT 'Pending'
 );
+
+CREATE TABLE CART_ITEMS(
+  orderItemID INT IDENTITY(200,1) PRIMARY KEY,
+  orderID INT NOT NULL,
+  productID INT NOT NULL,
+  quantity INT NOT NULL,
+  unitPrice DECIMAL(10,2) NOT NULL,
+  totalPrice DECIMAL(10,2) NOT NULL,
+  FOREIGN KEY (orderID) REFERENCES Orders(orderID)
+);
+
 
 CREATE TABLE VIRTUAL_FITTING_ROOM(
 fittingRoomID INT IDENTITY (8000,1),
 userID INT,
 timestamp DATETIME
 );
-
-CREATE TABLE CART_ITEMS(
-cartItemID INT IDENTITY (9000,1),
-customerID INT,
-productID INT,
-quantity INT,
-dateAdded DATETIME
-);
-
 
 --PRIVILEGED ACCOUNTS
 insert into USER_ACCOUNT (username, email, password, userRole)
