@@ -114,12 +114,75 @@
           <h6>TOTAL</h6>
           <p id="total-cart-p">$100.00</p>
         </div>
-        <button class="ml-auto">Proceed to Checkout</button>
+        <button id="checkoutButton" class="ml-auto">Proceed to Checkout</button>
       </div>
     </div>
   </div>
 </section>
 
+<!-- MODAL FOR CHECKOUT BUTTON!! -->
+<div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="checkoutModalLabel">Order Confirmed</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Thank you for your purchase! Your order has been placed.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL FOR EMPTY CART CHECKOUT BUTTON -->
+<div class="modal fade" id="emptyCartModal" tabindex="-1" role="dialog" aria-labelledby="emptyCartModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="emptyCartModalLabel">Cart Empty</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Your cart is empty. Please add items before proceeding to checkout.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCRIPT FOR THE CHECKOUT MODAL! SUIIII! -->
+<script>
+function checkout() {
+  $('#checkoutModal').modal('show');
+
+  localStorage.removeItem('cart');
+  refreshCartDisplay();
+}
+</script>
+
+<script>
+document.getElementById("checkoutButton").addEventListener("click", function() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  if (cart.length === 0) {
+    $('#emptyCartModal').modal('show');
+  } else {
+    $('#checkoutModal').modal('show');
+  }
+});
+</script>
+
+<!-- SCRIPT FOR DISCOUNT COUPONS!!! SSUIII!!! -->
 <script>
 let currentDiscountPercent = 0;
 
@@ -283,7 +346,6 @@ async function applyCoupon() {
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
