@@ -88,7 +88,7 @@
       <div>
         <h5>COUPON</h5>
         <p> Enter coupon code</p>
-        <input type="text" id="couponCodeInput" placeholder="Coupon Code">
+        <input type="text" id="couponCodeInput" class="form-control w-75 pl-2" placeholder="Coupon Code" style="margin-left: 0;">
         <button onclick="applyCoupon()">Apply Coupon</button>
         <p id="couponMessage" class="text-success"></p>
       </div>
@@ -103,8 +103,9 @@
         </div>
         <div class="d-flex justify-content-between">
           <h6>Shipping</h6>
-          <p>$1.70</p>
+          <p id="cart-shipping">$1.70</p>
         </div>
+
         <div class="d-flex justify-content-between">
           <h6>Discount</h6>
           <p id="discount-cart-p">$0.00</p>
@@ -178,6 +179,8 @@ document.getElementById("checkoutButton").addEventListener("click", function() {
     $('#emptyCartModal').modal('show');
   } else {
     $('#checkoutModal').modal('show');
+    localStorage.removeItem('cart');
+    refreshCartDisplay();
   }
 });
 </script>
@@ -189,18 +192,22 @@ let currentDiscountPercent = 0;
 function updateCartTotals() {
   const cart = JSON.parse(localStorage.getItem('cart')) || [];
   let subtotal = 0;
+  let shipping = 0;
 
-  cart.forEach(item => {
-    subtotal += item.price * item.count;
-  });
+  if (cart.length > 0) {
+    shipping = 1.70;
+    cart.forEach(item => {
+      subtotal += item.price * item.count;
+    });
+  }
 
-  const shipping = 1.70;
   const discountAmount = subtotal * (currentDiscountPercent / 100);
   const total = Math.max(0, subtotal + shipping - discountAmount);
 
   document.querySelector('#subtotal-cart-p').textContent = `$${subtotal.toFixed(2)}`;
   document.querySelector('#discount-cart-p').textContent = `-$${discountAmount.toFixed(2)} (${currentDiscountPercent}%)`;
   document.querySelector('#total-cart-p').textContent = `$${total.toFixed(2)}`;
+  document.querySelector('#cart-shipping').textContent = `$${shipping.toFixed(2)}`;
 }
 </script>
 
@@ -281,11 +288,17 @@ function refreshCartDisplay() {
     } catch (e) {
       localStorage.removeItem('cart');
       document.querySelector('#subtotal-cart-p').textContent = '$0.00';
-      document.querySelector('#total-cart-p').textContent = '$100.00';
+      document.querySelector('#discount-cart-p').textContent = '-$0.00 (0%)';
+      document.querySelector('#cart-shipping').textContent = '$0.00';
+      document.querySelector('#total-cart-p').textContent = '$0.00';
+
     }
   } else {
     document.querySelector('#subtotal-cart-p').textContent = '$0.00';
-    document.querySelector('#total-cart-p').textContent = '$100.00';
+    document.querySelector('#discount-cart-p').textContent = '-$0.00 (0%)';
+    document.querySelector('#cart-shipping').textContent = '$0.00';
+    document.querySelector('#total-cart-p').textContent = '$0.00';
+
   }
 }
 
