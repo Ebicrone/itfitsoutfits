@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CART</title>
 
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -69,7 +68,7 @@
 
 <section id="cart-container" class="container my-5">
   <table width="100%">
-    <thead> <!--CART HEADERS-->
+    <thead>
       <tr>
         <td>Remove</td>
         <td>Image</td>
@@ -79,8 +78,7 @@
         <td>Total</td>
       </tr>
     </thead>
-    <tbody id="tbody-contents"> <!--TABLES-->
-    </tbody>
+    <tbody id="tbody-contents"></tbody>
   </table>
 </section>
 
@@ -89,11 +87,13 @@
     <div class="coupon col-lg-6 col-md-6 col-12-mb-4">
       <div>
         <h5>COUPON</h5>
-        <p>Enter coupon code</p>
-        <input type="text" placeholder="Coupon Code">
-        <button>Apply Coupon</button>
+        <p> Enter coupon code</p>
+        <input type="text" id="couponCodeInput" placeholder="Coupon Code">
+        <button onclick="applyCoupon()">Apply Coupon</button>
+        <p id="couponMessage" class="text-success"></p>
       </div>
     </div>
+
     <div class="total col-lg-6 col-md-6 col-12-mb-4">
       <div>
         <h5>CART TOTAL</h5>
@@ -105,167 +105,185 @@
           <h6>Shipping</h6>
           <p>$1.70</p>
         </div>
+        <div class="d-flex justify-content-between">
+          <h6>Discount</h6>
+          <p id="discount-cart-p">$0.00</p>
+        </div>
         <hr class="second-hr">
         <div class="d-flex justify-content-between">
           <h6>TOTAL</h6>
-          <p id="total-cart-p">$1.70</p>
+          <p id="total-cart-p">$100.00</p>
         </div>
-        <button class="ml-auto">Proceed to Checkout </button>
+        <button class="ml-auto">Proceed to Checkout</button>
       </div>
     </div>
   </div>
 </section>
 
 <script>
-  // Function to update cart totals
-  function updateCartTotals() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let subtotal = 0;
-    
-    // Calculate subtotal
-    cart.forEach(item => {
-      subtotal += item.price * item.count;
-    });
-    
-    const shipping = 1.70;
-    const total = subtotal + shipping;
-    
-    // Update display
-    document.querySelector('#subtotal-cart-p').textContent = `$${subtotal.toFixed(2)}`;
-    document.querySelector('#total-cart-p').textContent = `$${total.toFixed(2)}`;
-  }
+let currentDiscountPercent = 0;
+
+function updateCartTotals() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let subtotal = 0;
+
+  cart.forEach(item => {
+    subtotal += item.price * item.count;
+  });
+
+  const shipping = 1.70;
+  const discountAmount = subtotal * (currentDiscountPercent / 100);
+  const total = Math.max(0, subtotal + shipping - discountAmount);
+
+  document.querySelector('#subtotal-cart-p').textContent = `$${subtotal.toFixed(2)}`;
+  document.querySelector('#discount-cart-p').textContent = `-$${discountAmount.toFixed(2)} (${currentDiscountPercent}%)`;
+  document.querySelector('#total-cart-p').textContent = `$${total.toFixed(2)}`;
+}
 </script>
 
 <!-- SCRIPT FOR PROFILE DROPDOWN -->
-  <script>
-    const userData = localStorage.getItem("user");
-    const profileDropdown = document.getElementById("profileDropdown");
-    const loginLink = document.getElementById("loginLink");
+<script>
+const userData = localStorage.getItem("user");
+const profileDropdown = document.getElementById("profileDropdown");
+const loginLink = document.getElementById("loginLink");
 
-    if (userData) {
-      const user = JSON.parse(userData);
-      const userName = document.getElementById("userName");
-      const userRole = document.getElementById("userRole");
+if (userData) {
+  const user = JSON.parse(userData);
+  const userName = document.getElementById("userName");
+  const userRole = document.getElementById("userRole");
 
-      userName.textContent = user.username || "";
-      userRole.textContent = user.userRole || "";
+  userName.textContent = user.username || "";
+  userRole.textContent = user.userRole || "";
 
-      profileDropdown.style.display = "inline-flex";
-      loginLink.style.display = "none";
-    } else {
-      profileDropdown.style.display = "none";
-      loginLink.style.display = "inline-flex";
-    }
+  profileDropdown.style.display = "inline-flex";
+  loginLink.style.display = "none";
+} else {
+  profileDropdown.style.display = "none";
+  loginLink.style.display = "inline-flex";
+}
 
-    function logout() {
-      localStorage.removeItem("user");
-      window.location.reload();
-    }
-  </script>
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
-
-  <script>
-  // Function to refresh cart display
-  function refreshCartDisplay() {
-    const o = localStorage.getItem('cart');
-    const t = document.querySelector('#tbody-contents');
-    
-    // Clear the table
-    t.innerHTML = '';
-    
-    if (o) {
-      try {
-        const cart = JSON.parse(o);
-        
-        cart.forEach((item, index) => {
-          const itemTotal = item.price * item.count;
-          t.innerHTML += `<tr>
-            <td><a href="#" onclick="removeCartItem(${index}); return false;"><i class="fas fa-trash-alt"></i></a></td>
-            <td><img src="${item.i}" alt="${item.n}" style="width: 100px; height: 80px; object-fit: cover;"></td>
-            <td><h5>${item.n}</h5></td>
-            <td><h5>$${item.price.toFixed(2)}</h5></td>
-            <td>
-              <input 
-                class="w-25 pl-1 quantity-input" 
-                type="number" 
-                min="1" 
-                value="${item.count}" 
-                data-index="${index}"
-              >
-            </td>
-            <td><h5 class="item-total">$${itemTotal.toFixed(2)}</h5></td>
-          </tr>`;
-        });
-        
-        // Add event listeners to quantity inputs
-        document.querySelectorAll('.quantity-input').forEach(input => {
-          input.addEventListener('change', function() {
-            const index = parseInt(this.getAttribute('data-index'));
-            const newQuantity = parseInt(this.value) || 1;
-            
-            // Update quantity in cart
-            const cart = JSON.parse(localStorage.getItem('cart'));
-            if (index >= 0 && index < cart.length) {
-              cart[index].count = newQuantity;
-              localStorage.setItem('cart', JSON.stringify(cart));
-              
-              // Update item total display
-              const itemTotal = cart[index].price * newQuantity;
-              this.closest('tr').querySelector('.item-total').textContent = `$${itemTotal.toFixed(2)}`;
-              
-              // Update cart totals
-              updateCartTotals();
-            }
-          });
-        });
-        
-        // Update totals
-        updateCartTotals();
-        
-      } catch (e) {
-        localStorage.removeItem('cart');
-        // Update totals to 0 when cart is empty
-        document.querySelector('#subtotal-cart-p').textContent = '$0.00';
-        document.querySelector('#total-cart-p').textContent = '$1.70';
-      }
-    } else {
-      // Update totals to 0 when cart is empty
-      document.querySelector('#subtotal-cart-p').textContent = '$0.00';
-      document.querySelector('#total-cart-p').textContent = '$1.70';
-    }
-  }
-
-  // Function to remove item from cart
-  function removeCartItem(index) {
-    try {
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-      // Remove item at specified index
-      cart.splice(index, 1);
-
-      // Update localStorage
-      if (cart.length > 0) {
-        localStorage.setItem('cart', JSON.stringify(cart));
-      } else {
-        localStorage.removeItem('cart');
-      }
-
-      // Refresh the cart display
-      refreshCartDisplay();
-    } catch (e) {
-      console.error('Error removing cart item:', e);
-      localStorage.removeItem('cart');
-      refreshCartDisplay();
-    }
-  }
-
-  // Initial cart display
-  refreshCartDisplay();
+function logout() {
+  localStorage.removeItem("user");
+  window.location.reload();
+}
 </script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+<script>
+function refreshCartDisplay() {
+  const o = localStorage.getItem('cart');
+  const t = document.querySelector('#tbody-contents');
+  
+  t.innerHTML = '';
+  
+  if (o) {
+    try {
+      const cart = JSON.parse(o);
+      
+      cart.forEach((item, index) => {
+        const itemTotal = item.price * item.count;
+        t.innerHTML += `<tr>
+          <td><a href="#" onclick="removeCartItem(${index}); return false;"><i class="fas fa-trash-alt"></i></a></td>
+          <td><img src="${item.i}" alt="${item.n}" style="width: 100px; height: 80px; object-fit: cover;"></td>
+          <td><h5>${item.n}</h5></td>
+          <td><h5>$${item.price.toFixed(2)}</h5></td>
+          <td>
+            <input 
+              class="w-25 pl-1 quantity-input" 
+              type="number" 
+              min="1" 
+              value="${item.count}" 
+              data-index="${index}"
+            >
+          </td>
+          <td><h5 class="item-total">$${itemTotal.toFixed(2)}</h5></td>
+        </tr>`;
+      });
+      
+      document.querySelectorAll('.quantity-input').forEach(input => {
+        input.addEventListener('change', function() {
+          const index = parseInt(this.getAttribute('data-index'));
+          const newQuantity = parseInt(this.value) || 1;
+          const cart = JSON.parse(localStorage.getItem('cart'));
+          if (index >= 0 && index < cart.length) {
+            cart[index].count = newQuantity;
+            localStorage.setItem('cart', JSON.stringify(cart));
+            const itemTotal = cart[index].price * newQuantity;
+            this.closest('tr').querySelector('.item-total').textContent = `$${itemTotal.toFixed(2)}`;
+            updateCartTotals();
+          }
+        });
+      });
+
+      updateCartTotals();
+    } catch (e) {
+      localStorage.removeItem('cart');
+      document.querySelector('#subtotal-cart-p').textContent = '$0.00';
+      document.querySelector('#total-cart-p').textContent = '$100.00';
+    }
+  } else {
+    document.querySelector('#subtotal-cart-p').textContent = '$0.00';
+    document.querySelector('#total-cart-p').textContent = '$100.00';
+  }
+}
+
+function removeCartItem(index) {
+  try {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.splice(index, 1);
+    if (cart.length > 0) {
+      localStorage.setItem('cart', JSON.stringify(cart));
+    } else {
+      localStorage.removeItem('cart');
+    }
+    refreshCartDisplay();
+  } catch (e) {
+    console.error('Error removing cart item:', e);
+    localStorage.removeItem('cart');
+    refreshCartDisplay();
+  }
+}
+
+refreshCartDisplay();
+</script>
+
+<script>
+async function applyCoupon() {
+  const code = document.getElementById('couponCodeInput').value.trim();
+
+  if (!code) {
+    document.getElementById('couponMessage').textContent = 'Please enter a coupon code.';
+    return;
+  }
+
+  try {
+    const res = await fetch('http://localhost:3000/api/validate-coupon', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ couponCode: code })
+    });
+
+    const data = await res.json();
+
+    if (data.valid) {
+      currentDiscountPercent = data.discountPercent;
+      document.getElementById('couponMessage').textContent = `${currentDiscountPercent}% discount applied.`;
+    } else {
+      currentDiscountPercent = 0;
+      document.getElementById('couponMessage').textContent = ' Invalid coupon.';
+    }
+
+    updateCartTotals();
+  } catch (err) {
+    console.error('Error applying coupon:', err);
+    document.getElementById('couponMessage').textContent = 'Server error applying coupon.';
+  }
+}
+</script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

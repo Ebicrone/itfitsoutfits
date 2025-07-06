@@ -6,13 +6,11 @@ const port = 3000;
 app.use(express.json());
 app.use(express.static('frontend'));
 
-// CONFIGURE YOUR DATABASE AND SERVER HERE !!!!
 const config = {
-  user: 'sa', //Input username used in SQL Management Studio.
-  password: 'systemadmin', //Input password for said username in SQL Management Studio.
-  server: 'JOLO', //Input server name used during login in SQL Management Studio.
-  server: 'KRUGS', //Input server name used during login in SQL Management Studio.
-  database: 'ITFITS', 
+  user: 'sa', // Your SQL user
+  password: 'systemadmin', // Your password
+  server: 'KRUGS', // Your server name
+  database: 'ITFITS',
   options: {
     encrypt: true,
     trustServerCertificate: true
@@ -22,7 +20,7 @@ const config = {
 const pool = new sql.ConnectionPool(config);
 const poolConnect = pool.connect();
 
-// Register route
+// Registration route
 app.post('/api/register', async (req, res) => {
   const { username, email, password, firstName, lastName, height, weight } = req.body;
 
@@ -97,6 +95,36 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
+// Coupon route
+app.post('/api/validate-coupon', async (req, res) => {
+  const { couponCode } = req.body;
+
+  if (!couponCode) {
+    return res.status(400).json({ valid: false, message: 'No coupon code provided.' });
+  }
+
+  try {
+    await poolConnect;
+    const request = pool.request();
+    request.input('couponCode', sql.VarChar, couponCode);
+
+    const result = await request.query(`
+      SELECT * FROM COUPONS WHERE couponCode = @couponCode
+    `);
+
+    if (result.recordset.length > 0) {
+      res.json({ valid: true, discountPercent: result.recordset[0].discountPercent });
+    } else {
+      res.json({ valid: false });
+    }
+  } catch (err) {
+    console.error('SQL error', err);
+    res.status(500).json({ error: 'Server error', details: err.message });
+  }
+});
+
+
+// app.listen
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });

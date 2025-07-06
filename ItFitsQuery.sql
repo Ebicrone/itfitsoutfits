@@ -4,6 +4,11 @@ USE ITFITS;
 
 --TABLES
 
+CREATE TABLE COUPONS(
+couponCode VARCHAR(10),
+discount INT
+);
+
 CREATE TABLE CUSTOMERS(
 customerID INT IDENTITY (1000,1) PRIMARY KEY,
 cartContents VARCHAR(50),
@@ -99,3 +104,10 @@ select * from USER_ACCOUNT;
 
 --DELETE TABLE
 drop table USER_ACCOUNT;
+
+--COUPONS
+INSERT INTO COUPONS (couponCode, discount)
+VALUES ('PasaraKami','100');
+
+--SHOW COUPONS
+SELECT * FROM COUPONS;
