@@ -10,7 +10,7 @@ app.use(express.static('frontend'));
 const config = {
   user: 'sa', //Input username used in SQL Management Studio.
   password: 'systemadmin', //Input password for said username in SQL Management Studio.
-  server: 'JOLO', //Input server name used during login in SQL Management Studio.
+  server: 'KRUGS', //Input server name used during login in SQL Management Studio.
   database: 'ITFITS', 
   options: {
     encrypt: true,
