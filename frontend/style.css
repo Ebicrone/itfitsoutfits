@@ -175,6 +175,10 @@ button:hover {
   white-space: nowrap;
 }
 
+#cart-container table td:nth-child(3) {
+  white-space: normal; /* Allow text to wrap */
+  word-wrap: break-word; /* Break long words if necessary */
+}
 #cart-container thead td {
   background: #022529;
   color: #fff;
