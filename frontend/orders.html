@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Orders Management</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <!-- NAVIGATION -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">IT FITS OUTFITS</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-3">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item mx-3">
+            <a class="nav-link" href="shop.html">Shop</a>
+          </li>
+          <li class="nav-item mx-3">
+            <a class="nav-link" href="cart.html">Cart</a>
+          </li>
+          <li class="nav-item mx-3">
+            <a class="nav-link" href="#" onclick="logout()">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container my-5">
+    <h2>Orders Management</h2>
+    <div class="table-responsive">
+      <table class="table table-bordered mt-4">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Size</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="ordersTableBody">
+          <!-- Orders will be injected here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Authentication & Role Control
+    const userData = JSON.parse(localStorage.getItem("user"));
+    if (!userData) {
+      window.location.href = "login.html";
+    } else if (userData.userRole !== "Product Manager") {
+      // If not Product Manager, redirect
+      alert("Access denied. Only Product Managers can view this page.");
+      window.location.href = "index.html";
+    }
+
+    // Load orders
+    const orders = JSON.parse(localStorage.getItem("orders")) || [];
+    const tbody = document.getElementById("ordersTableBody");
+
+    orders.forEach((order, index) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${order.n}</td>
+        <td>${order.size}</td>
+        <td>${order.count}</td>
+        <td>$${order.price.toFixed(2)}</td>
+        <td>$${(order.count * order.price).toFixed(2)}</td>
+        <td id="status-${index}">${order.status}</td>
+        <td>
+          ${order.status === "Pending"
+            ? `<button class="btn btn-success btn-sm" onclick="approveOrder(${index})">Approve</button>`
+            : `<span class="text-success">Approved</span>`
+          }
+        </td>
+      `;
+      tbody.appendChild(row);
+    });
+
+    function approveOrder(index) {
+      orders[index].status = "Approved";
+      localStorage.setItem("orders", JSON.stringify(orders));
+      document.getElementById(`status-${index}`).textContent = "Approved";
+      alert("Order approved.");
+      location.reload();
+    }
+
+    function logout() {
+      localStorage.removeItem("user");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>
