@@ -301,6 +301,10 @@ body {
   align-items: center;
 }
 
+#new .one img {
+  transition: 0.3s ease-in-out;
+}
+
 .small-img,
 .bottom-img {
   cursor: pointer;
