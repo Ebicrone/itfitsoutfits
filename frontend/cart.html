@@ -27,7 +27,7 @@
             <i class="fas fa-shopping-bag fa-2x" onclick="window.location.href='cart.html'"></i>
           </li>
           <li class="nav-item dropdown mx-2" id="profileDropdown" style="display:none;">
-            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">
               <i class="fas fa-user-circle fa-lg mr-1"></i>
               <span id="userName"></span>
             </a>
@@ -103,7 +103,7 @@
     </div>
   </section>
 
-  <!-- Checkout Confirmation Modal -->
+  <!-- Checkout Modal -->
   <div class="modal fade" id="checkoutModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -124,12 +124,12 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Empty Cart</h5>
+          <h5 class="modal-title">Cart Notice</h5>
           <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
         </div>
-        <div class="modal-body">Your cart is empty. Please add items before proceeding.</div>
+        <div class="modal-body">Your cart has no approved items to checkout.</div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
         </div>
       </div>
     </div>
@@ -151,7 +151,7 @@
     </div>
   </div>
 
-<script>
+  <script>
 let currentDiscountPercent = 0;
 
 function logout() {
@@ -214,13 +214,13 @@ document.addEventListener("input", function(e) {
 });
 
 document.getElementById("checkoutButton").addEventListener("click", function() {
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  if (cart.length === 0) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  if (cart.filter(item => item.status === "Approved").length === 0) {
     $('#emptyCartModal').modal('show');
     return;
   }
-  const remaining = cart.filter(item => item.status !== "Approved");
-  localStorage.setItem('cart', JSON.stringify(remaining));
+  cart = cart.filter(item => item.status !== "Approved");
+  localStorage.setItem('cart', JSON.stringify(cart));
   $('#checkoutModal').modal('show');
   refreshCartDisplay();
 });
@@ -291,6 +291,7 @@ if (userDataRaw) {
   loginLink.style.display = "none";
   if (user.userRole === "Product Manager") {
     document.getElementById("reviewButton").style.display = "inline-block";
+    document.querySelector(".coupon").style.display = "none";
   } else {
     document.getElementById("checkoutButton").style.display = "inline-block";
   }
@@ -302,6 +303,7 @@ if (userDataRaw) {
 
 refreshCartDisplay();
 </script>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
