@@ -9,7 +9,7 @@ app.use(express.static('frontend'));
 const config = {
   user: 'sa', // Your SQL user
   password: 'systemadmin', // Your password
-  server: 'localhost', // Your server name
+  server: 'JOLO', // Your server name
   database: 'ITFITS',
   options: {
     encrypt: true,
@@ -126,5 +126,5 @@ app.post('/api/validate-coupon', async (req, res) => {
 
 // app.listen
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+  console.log(Server running at http://localhost:${port});
 });
