@@ -9,7 +9,7 @@ app.use(express.static('frontend'));
 const config = {
   user: 'sa', // Your SQL user
   password: 'systemadmin', // Your password
-  server: 'localhost', // Your server name
+  server: 'JOLO', // Your server name
   database: 'ITFITS',
   options: {
     encrypt: true,
