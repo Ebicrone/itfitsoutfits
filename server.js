@@ -113,7 +113,7 @@ app.post('/api/validate-coupon', async (req, res) => {
     `);
 
     if (result.recordset.length > 0) {
-      res.json({ valid: true, discountPercent: result.recordset[0].discountPercent });
+      res.json({ valid: true, discountPercent: result.recordset[0].discount });
     } else {
       res.json({ valid: false });
     }
